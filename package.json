@@ -1,0 +1,25 @@
+{
+  "name": "gestion_de_livraison",
+  "version": "1.0.0",
+  "description": "Dans le cadre de son développement au Maroc, le restaurant mar7aba souhaite faciliter la gestion de livraison avec les partenaires par la création d'une Application cross plateforme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaima-marzouk/Gestion_de_livraison.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaima-marzouk/Gestion_de_livraison/issues"
+  },
+  "homepage": "https://github.com/chaima-marzouk/Gestion_de_livraison#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.17.0"
+  }
+}
