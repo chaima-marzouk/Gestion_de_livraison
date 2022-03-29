@@ -1,4 +1,6 @@
-const express = require('express')
+const mongoose = require('mongoose');
+const express = require('express');
+const dotenv = require('dotenv').config();
 const app = express()
 
 app.use(express.json());
@@ -8,8 +10,18 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-const PORT = process.env.PORT || 5000;
+const DB = process.env.DATABASE_LOCAL;
+mongoose.connect(DB, {
+    // useNewUrlParser: true,
+    // useCreateIndex: true,
+    // useUnifiedTopology: true,
+    // useFindAndModify: false
+}).then(() => {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => `Server is running on port ${PORT}`);
+    console.log('Connection successed !! ');
+    console.log(`Server is running on port ${PORT}`)
 
-app.listen( PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
+}).catch(err => {
+    console.log(err);
 })
