@@ -4,7 +4,9 @@
   "description": "Dans le cadre de son développement au Maroc, le restaurant mar7aba souhaite faciliter la gestion de livraison avec les partenaires par la création d'une Application cross plateforme",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js"
   },
   "repository": {
     "type": "git",

@@ -12,10 +12,8 @@ app.get('/', (req, res) => {
 
 const DB = process.env.DATABASE_LOCAL;
 mongoose.connect(DB, {
-    // useNewUrlParser: true,
-    // useCreateIndex: true,
-    // useUnifiedTopology: true,
-    // useFindAndModify: false
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 }).then(() => {
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => `Server is running on port ${PORT}`);
