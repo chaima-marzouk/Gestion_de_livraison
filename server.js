@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const dotenv = require('dotenv').config();
+const user_route = require('./routes/user.route');
 const app = express()
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+    app.use(express.json());
+    app.use(express.urlencoded({extended:true}));
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+    app.use('api/users', user_route)
+
+    app.get('/', (req, res) => {
+    res.send('Bienvennue sur {gestion de livraison} app!')
+    })
 
 const DB = process.env.DATABASE_LOCAL;
 mongoose.connect(DB, {
