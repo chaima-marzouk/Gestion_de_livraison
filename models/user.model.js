@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
         }
     },
     phone_number : {
-        type: Number,
+        type: String,
         required:  [true, 'A User must have a phone_number']
     },
     role : {
@@ -45,5 +45,5 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-const user = mongoose.model('user' , userSchema);
+const user = mongoose.model('User' , userSchema);
 module.exports = user;
