@@ -27,19 +27,36 @@ exports.register = async(req, res) => {
     }
 }
 
-exports.signin = async(req, res) =>{
+exports.login = async (req, res, next) => {
 
     try {
-        
-        const {email, password} = req.body;
 
-        if (!email && !password) {
+        const { email, password } = req.body;
+
+        if(!email && !password) {
             return res.status(400).json({
                 status: "fail",
-                message: "Please provide email and password"
-            })
+                message: "Please provide email and password!"
+            });
         }
-    } catch (error) {
-        
+
+        const user = await User.findOne({ email }).select('+password');
+
+        if(!user || !(await user.correctPassword(password, user.password))) {
+            return res.status(401).json({
+                status: "fail",
+                message: "Incorrect email or password"
+            });
+        }
+
+        createSendToken(user, 200, res);
+
+
+    } catch (err) {
+        return res.status(404).json({
+            status: "fail",
+            message: "Requested Fail !!"
+        });
     }
-}
+
+};
