@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
     name : {
@@ -56,6 +57,10 @@ userSchema.statics.isThisEmailInUse = async function(email) {
       console.log(error)
       return false
   }
+}
+
+userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
+    return await bcrypt.compare(candidatePassword, userPassword);
 }
 
 const user = mongoose.model('User' , userSchema);
