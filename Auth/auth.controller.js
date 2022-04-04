@@ -4,6 +4,12 @@ const User = require('../models/user.model');
 
 
 exports.register = async(req, res) => {
+    const isnewUser = await User.isThisEmailInUse(req.body.email);
+    if(!isnewUser)
+    return res.json({
+        success: false,
+        message: "this email is already in use, try signin"
+    })
 
     try {
         const user = await User.create({
@@ -14,7 +20,7 @@ exports.register = async(req, res) => {
             phone_number: req.body.phone_number
         });
 
-        res.send(200 , user);
+        res.status(200).send(user);
        
     } catch(err){
         console.log(err)

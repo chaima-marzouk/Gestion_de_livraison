@@ -45,5 +45,18 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+userSchema.statics.isThisEmailInUse = async function(email) {
+    if(!email) console.log("Invalid Email")
+  try {
+    const client =  await this.findOne({email})
+    if(client) return false
+    
+    return true;
+  } catch (error) {
+      console.log(error)
+      return false
+  }
+}
+
 const user = mongoose.model('User' , userSchema);
 module.exports = user;
