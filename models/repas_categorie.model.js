@@ -8,6 +8,19 @@ const categorieSchema = new mongoose.Schema({
     }
 });
 
+categorieSchema.statics.isThisCategorieInUse = async function(type) {
+    if(!type) console.log("invalid type");
+    try {
+        const categ = await this.findOne({type})
+        if(type) return false
+
+        return true;
+    } catch (error) {
+        console.log(error)
+        return false ;
+    }
+}
+
 const categorie = mongoose.model('Categorie', categorieSchema);
 
 module.exports = categorie; 
