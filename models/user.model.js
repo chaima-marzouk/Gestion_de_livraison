@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
     name : {
@@ -46,6 +46,17 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+userSchema.pre('save', async function(next) {
+
+    if(!this.isModified('password')) return next();
+
+    this.password = await bcrypt.hash(this.password, 12);
+
+    this.passwordConfirm = undefined;
+    next();
+
+});
+
 userSchema.statics.isThisEmailInUse = async function(email) {
     if(!email) console.log("Invalid Email")
   try {
@@ -59,9 +70,11 @@ userSchema.statics.isThisEmailInUse = async function(email) {
   }
 }
 
-userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
+
+
+userSchema.method.correctPassword = async function(candidatePassword, userPassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
 }
-
 const user = mongoose.model('User' , userSchema);
+
 module.exports = user;
