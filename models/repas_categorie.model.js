@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const categorieSchema = new mongoose.Schema({
-    Type: {
+    type: {
         type: String,
         required: [true, 'Please add meal type']
     }

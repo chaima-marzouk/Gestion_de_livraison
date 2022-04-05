@@ -11,7 +11,7 @@ require('./DB/db');
     app.use(express.urlencoded({extended:true}));
 
     app.use('/api/users', userRoute);
-    app.use('/api/categories', userRoute);
+    app.use('/api/categories', categorieRoute);
 
     app.get('/', (req, res) => {
     res.send('Bienvennue sur {gestion de livraison} app!')
