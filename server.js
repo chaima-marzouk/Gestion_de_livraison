@@ -4,7 +4,7 @@ const dotenv = require('dotenv').config();
 const userRoute = require('./routes/user.route');
 const categorieRoute = require('./routes/categorie.route');
 const app = express();
-require('./models/db');
+require('./DB/db');
 
 
     app.use(express.json());
