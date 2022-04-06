@@ -23,3 +23,15 @@ exports.remove = async(req, res) => {
         res.send(error);
     }
 }
+exports.select = async(req, res) => {
+    try {
+        const repas = await Repas.find({})
+
+        res.status(200).json({
+            data: repas
+        })
+    } catch (error) {
+        
+        res.status(400).send(error)
+    }
+}
