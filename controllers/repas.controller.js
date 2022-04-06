@@ -9,8 +9,17 @@ exports.add = async(req, res) => {
         })
 
         res.status(200).send(repas)
-        
+
     } catch (error) {
         res.status(400).send(error)
+    }
+}
+exports.remove = async(req, res) => {
+    try {
+        const repas = await Repas.findById(req.params.id)
+        await repas.remove()
+        res.send({data}) 
+    } catch (error) {
+        res.send(error);
     }
 }
