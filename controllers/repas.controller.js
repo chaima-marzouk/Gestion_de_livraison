@@ -1,6 +1,7 @@
 const Repas = require('../models/repas.model.js');
 
 exports.add = async(req, res) => {
+
     try {
         const repas = await Repas.create({
             name : req.body.name,
@@ -13,8 +14,10 @@ exports.add = async(req, res) => {
     } catch (error) {
         res.status(400).send(error)
     }
+
 }
 exports.remove = async(req, res) => {
+
     try {
         const repas = await Repas.findById(req.params.id)
         await repas.remove()
@@ -22,8 +25,10 @@ exports.remove = async(req, res) => {
     } catch (error) {
         res.send(error);
     }
+
 }
 exports.select = async(req, res) => {
+
     try {
         const repas = await Repas.find({})
 
@@ -34,4 +39,5 @@ exports.select = async(req, res) => {
         
         res.status(400).send(error)
     }
+    
 }
