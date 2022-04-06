@@ -4,6 +4,7 @@ const dotenv = require('dotenv').config();
 const userRoute = require('./routes/user.route');
 const categorieRoute = require('./routes/categorie.route');
 const repasRouter = require('./routes/repas.route');
+const orderRoute = require('./routes/order.route');
 const app = express();
 require('./DB/db');
 
@@ -13,7 +14,8 @@ require('./DB/db');
 
     app.use('/api/users', userRoute);
     app.use('/api/categories', categorieRoute);
-    app.use('/api/repas', repasRouter)
+    app.use('/api/repas', repasRouter);
+    app.use('/api/order', orderRoute)
     app.get('/', (req, res) => {
     res.send('Bienvennue sur {gestion de livraison} app!')
     })

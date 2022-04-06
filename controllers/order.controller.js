@@ -1,6 +1,6 @@
-const Order = require('../models/repas.model');
+const Order = require('../models/order.model');
 
-exports.add = await (req , res) => {
+exports.add = async (req, res) => {
 
     try {
         
