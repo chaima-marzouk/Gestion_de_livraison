@@ -1,4 +1,4 @@
-const Repas = reuire('../models/repas.model.js');
+const Repas = require('../models/repas.model.js');
 
 exports.add = async(req, res) => {
     try {
@@ -9,7 +9,8 @@ exports.add = async(req, res) => {
         })
 
         res.status(200).send(repas)
+        
     } catch (error) {
-        res.status(400).send("oups !")
+        res.status(400).send(error)
     }
 }

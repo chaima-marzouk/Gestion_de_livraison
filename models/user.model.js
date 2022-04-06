@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     },
     phone_number : {
         type: String,
-        required:  [true, 'A User must have a phone_number']
+        // required:  [true, 'A User must have a phone_number']
     },
     role : {
         type: String,
