@@ -13,8 +13,8 @@ const orderSchema = new mongoose.Schema({
         default: 'ready'
     },
     adresse : {
-        type: String,
-        required: true
+        required: true,
+        type: String
     }
 });
 
