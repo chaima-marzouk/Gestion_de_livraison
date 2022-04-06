@@ -19,6 +19,11 @@ const repasSchema = new mongoose.Schema({
     }
 
 });
+    repasSchema.virtual('Categorie', {
+        ref: 'room',
+        foreignField: 'hotel',
+        localField: '_id'
+    });
 
 const repas = mongoose.model('repas', repasSchema);
 module.exports = repas;
