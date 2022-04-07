@@ -5,10 +5,6 @@ const repasSchema = new mongoose.Schema({
         type: String,
         required : true
     },
-    image : {
-        type: String,
-        // required : true
-    },
     description : {
         type: String,
         required : true
@@ -20,6 +16,10 @@ const repasSchema = new mongoose.Schema({
     categorie: {
         type: mongoose.Schema.Types.ObjectId,
         ref:'Categorie',
+        required : true
+    },
+    images: {
+        type: [String],
         required : true
     }
 
