@@ -21,6 +21,11 @@ const repasSchema = new mongoose.Schema({
     images: {
         type: [String],
         required : true
+    },
+    contité: {
+        type: Number,
+        required : true,
+        default: 0
     }
 
 });

@@ -27,7 +27,8 @@ exports.add = async(req, res) => {
             description : req.body.description,
             prix : req.body.prix,
             categorie: req.body.categorie,
-            images: images
+            images: images,
+            contité: req.body.contité
         })
 
         res.status(200).send(repas)
