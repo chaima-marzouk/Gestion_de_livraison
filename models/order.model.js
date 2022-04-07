@@ -15,6 +15,19 @@ const orderSchema = new mongoose.Schema({
     adresse : {
         required: true,
         type: String
+    },
+    livreur: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
+    },
+    client: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
+    },
+    meals: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'repas',
+        require : true
     }
 });
 
