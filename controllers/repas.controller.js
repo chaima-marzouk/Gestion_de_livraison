@@ -28,7 +28,8 @@ exports.add = async(req, res) => {
             prix : req.body.prix,
             categorie: req.body.categorie,
             images: images,
-            contité: req.body.contité
+            contité: req.body.contité,
+            total_repas : req.body.contité * req.body.prix
         })
 
         res.status(200).send(repas)
