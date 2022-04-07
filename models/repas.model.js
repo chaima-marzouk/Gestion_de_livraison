@@ -16,12 +16,17 @@ const repasSchema = new mongoose.Schema({
     prix : {
         type: Number,
         required : true
+    },
+    categorie: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Categorie',
+        required : true
     }
 
 });
     // repasSchema.virtual('Categorie', {
-    //     ref: 'room',
-    //     foreignField: 'hotel',
+    //     ref: 'Categorie',
+    //     foreignField: 'categorie',
     //     localField: '_id'
     // });
 
