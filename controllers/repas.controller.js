@@ -3,10 +3,12 @@ const Repas = require('../models/repas.model.js');
 exports.add = async(req, res) => {
 
     try {
+        
         const repas = await Repas.create({
             name : req.body.name,
             description : req.body.description,
-            prix : req.body.prix
+            prix : req.body.prix,
+            categorie: req.body.categorie
         })
 
         res.status(200).send(repas)
@@ -30,7 +32,7 @@ exports.remove = async(req, res) => {
 exports.select = async(req, res) => {
 
     try {
-        const repas = await Repas.find({})
+        const repas = await Repas.find({}).populate('categorie')
 
         res.status(200).json({
             data: repas
@@ -39,5 +41,5 @@ exports.select = async(req, res) => {
         
         res.status(400).send(error)
     }
-    
+
 }
