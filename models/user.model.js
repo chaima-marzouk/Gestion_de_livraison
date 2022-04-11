@@ -72,8 +72,13 @@ userSchema.statics.isThisEmailInUse = async function(email) {
 
 
 
-userSchema.method.correctPassword = async function(candidatePassword, userPassword) {
+userSchema.statics.correctPassword = async function(candidatePassword, userPassword) {
     return await bcrypt.compare(candidatePassword, userPassword);
+    if (candidatePassword == userPassword) {
+        console.log('ok')
+    }else{
+        console.log('no')
+    }
 }
 const user = mongoose.model('User' , userSchema);
 

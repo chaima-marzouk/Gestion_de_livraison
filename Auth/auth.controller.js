@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/user.model');
+const jwt = require('json-web-token')
+const bcrypt = require('bcryptjs');
 
 
 
@@ -27,6 +29,7 @@ exports.register = async(req, res) => {
     }
 }
 
+
 exports.login = async (req, res, next) => {
 
     try {
@@ -41,18 +44,22 @@ exports.login = async (req, res, next) => {
         }
 
         const user = await User.findOne({ email }).select('+password');
-        console.log(user);
+        console.log(password);
 
-        if(!user || !(await user.correctPassword(password, user.password))) {
+        if(!user || !(await password == user.password)) {
             return res.status(401).json({
                 status: "fail",
                 message: "Incorrect email or password"
             });
         }
 
-    //    else{
-    //        res.send('yey!')
-    //    }
+       else{
+        return res.status(200).json({
+            status: "success",
+            message: "Welcome"
+        });
+           console.log("correct password")
+       }
 
 
     } catch (err) {
@@ -60,6 +67,7 @@ exports.login = async (req, res, next) => {
             status: "fail",
             message: "Requested Fail !!"
         });
+        console.log(err)
     }
 
 };
