@@ -20,9 +20,12 @@
   "homepage": "https://github.com/chaima-marzouk/Gestion_de_livraison#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "joi": "^17.6.0",
+    "json-web-token": "^3.2.0",
     "mongoose": "^6.2.9",
     "multer": "^1.4.4",
     "mysql2": "^2.3.3",

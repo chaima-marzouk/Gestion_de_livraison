@@ -28,9 +28,10 @@ exports.add = async(req, res) => {
             prix : req.body.prix,
             categorie: req.body.categorie,
             images: images,
-            contité: req.body.contité,
-            total_repas : req.body.contité * req.body.prix
+            contité: req.body.contité
         })
+
+        console.log(repas)
 
         res.status(200).send(repas)
 
@@ -64,4 +65,16 @@ exports.select = async(req, res) => {
         res.status(400).send(error)
     }
 
+}
+
+exports.findOne = async(req, res) => {
+
+    try {
+        
+        const repas = Repas.findById(req.params.id);
+        await repas.populate('categorie').execPopulate()
+
+    } catch (error) {
+        
+    }
 }
