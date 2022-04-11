@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../models/user.model');
 const jwt = require('json-web-token')
 const bcrypt = require('bcryptjs');
+const dotenv = require('dotenv').config();
 
 
 
@@ -69,5 +70,29 @@ exports.login = async (req, res, next) => {
         });
         console.log(err)
     }
+
+    const payload = {
+         id: user.id,
+         username: user.name,
+         role: user.role
+    }
+
+    const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET), {
+
+        algorithm: "HS256",
+        expiresIn: process.env.ACCESS_TOKEN_LIFE
+    }
+
+    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET), {
+
+        algorithm: "HS256",
+        expiresIn: process.env.ACCESS_TOKEN_LIFE
+    }
+
+    user.refreshToken = refreshToken;
+
+    res.cookie("jwt", accessToken, {secure: true, httpOnly: true})
+
+    res.send()
 
 };
