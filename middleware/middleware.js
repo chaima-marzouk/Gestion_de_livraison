@@ -30,15 +30,22 @@ const User = require('../models/user.model');
 
     exports.verifyIfAdmin = function(req, res, next){
 
-        let accessToken = req.headers.authorization
+        try {
+            
+            let accessToken = req.headers.authorization
         payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
 
         let user = payload.role
+
         if (user = 'admin') {
-            res.send('welcome admin')
+            res.status(200).send('welcome admin')
         }else{
 
             res.send("sorry you're not allowed")
+        }
+
+        } catch (error) {
+            res.status(400).send(error)
         }
 
         next
