@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/user.model');
 const jwt = require('jsonwebtoken')
-
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv').config();
 
@@ -61,7 +60,7 @@ exports.login = async (req, res, next) => {
         const user = await User.findOne({ email }).select('+password');
         console.log(password);
 
-        if(!user || !(await password == user.password)) {
+        if(!user || !password == user.password) {
             return res.status(401).json({
                 status: "fail",
                 message: "Incorrect email or password"
@@ -101,13 +100,14 @@ exports.login = async (req, res, next) => {
 
   res.json({ accessToken: accessToken})
 
-    const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
+    // const refreshToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {
 
-        algorithm: "HS256",
-        expiresIn: process.env.ACCESS_TOKEN_LIFE
-    })
+    //     algorithm: "HS256",
+    //     expiresIn:new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+    //     httpOnly: true
+    // })
 
-    user.refreshToken = refreshToken;
+    // user.refreshToken = refreshToken;
 
     res.cookie("jwt", accessToken, {secure: true, httpOnly: true})
 
