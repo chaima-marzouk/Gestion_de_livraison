@@ -16,7 +16,21 @@ exports.add = async(req, res) => {
 
     } catch (error) {
 
-        console.log(err)
+        res.status(400).send(error)
     }
 }
 
+exports.remove = async(req, res) => {
+    try {
+        
+        const user = await User.findById(req.params.id)
+        await user.remove()
+
+        res.send('user Deleted :)')
+
+    } catch (error) {
+        
+        res.status(400).send(error)
+
+    }
+}
