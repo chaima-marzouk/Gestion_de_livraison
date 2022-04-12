@@ -19,7 +19,8 @@ require('./DB/db');
     app.use('/api/users', AuthRoute);
     app.use('/api/categories', categorieRoute);
     app.use('/api/repas', repasRouter);
-    app.use('/api/order', orderRoute)
+    app.use('/api/order', orderRoute);
+    app.use('/api/user', userRoute);
     app.get('/', (req, res) => {
     res.send('Bienvennue sur {gestion de livraison} app!')
     })

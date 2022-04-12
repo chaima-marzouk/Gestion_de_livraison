@@ -24,7 +24,7 @@ const User = require('../models/user.model');
             return res.status(401).send("sorry your token has expired or has a invalid signature")
         }
           
-    next
+    next()
 }
 
 
@@ -48,7 +48,7 @@ const User = require('../models/user.model');
             res.status(400).send(error)
         }
 
-        next
+        next()
     }
 
    
