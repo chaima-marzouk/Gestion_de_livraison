@@ -80,6 +80,19 @@ userSchema.statics.correctPassword = async function(candidatePassword, userPassw
         console.log('no')
     }
 }
+
+
+userSchema.statics.changedPasswordAfter = function(JWTTimestamp) {
+
+    const changeDateToTimestamp = parseInt(this.passwordChangedAt / 1000, 10);
+    if(this.passwordChangedAt) {
+        return JWTTimestamp < changeDateToTimestamp;  
+    }
+
+    return false;
+} 
+
+
 const user = mongoose.model('User' , userSchema);
 
 module.exports = user;

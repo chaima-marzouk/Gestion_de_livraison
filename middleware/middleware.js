@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
+const User = require('../models/user.model');
 
 
     exports.verify = function(req, res, next){
@@ -22,5 +23,25 @@ const dotenv = require('dotenv').config();
             console.log(e);
             return res.status(401).send("sorry your token has expired or has a invalid signature")
         }
-    
+          
+    next
 }
+
+
+    exports.verifyIfAdmin = function(req, res, next){
+
+        let accessToken = req.headers.authorization
+        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+
+        let user = payload.role
+        if (user = 'admin') {
+            res.send('welcome admin')
+        }else{
+
+            res.send("sorry you're not allowed")
+        }
+
+        next
+    }
+
+   
