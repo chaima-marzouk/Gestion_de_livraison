@@ -8,6 +8,8 @@ const categorieRoute = require('./routes/categorie.route');
 const repasRouter = require('./routes/repas.route');
 const orderRoute = require('./routes/order.route');
 const AuthRoute = require('./routes/Auth.route');
+const { notFound } = require('./middleware/error');
+const { errorHandler } = require('./middleware/error');
 const app = express();
 require('./DB/db');
 
@@ -16,6 +18,8 @@ require('./DB/db');
     app.use(express.urlencoded({extended:true}));
     app.use(cookieParser())
 
+    app.use(notFound);
+    app.use(errorHandler);
     app.use('/api/users', AuthRoute);
     app.use('/api/categories', categorieRoute);
     app.use('/api/repas', repasRouter);
