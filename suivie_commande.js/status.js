@@ -57,9 +57,11 @@ exports.followOrder = async (req, res) => {
         case 'delivred':
     
             try {
-                const price =  req.body.totalPrice
+                const price =  req.body.totalPrice;
+                const orderId = req.body.orderId
                 const facture = await Facture.create({
-                    totalPrice : price
+                    totalPrice : price,
+                    order : orderId
                 })
             
                 res.status(200).send(facture)
