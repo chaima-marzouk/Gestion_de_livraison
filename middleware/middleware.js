@@ -32,13 +32,15 @@ exports.verifyIfAdmin = function(req, res, next){
 
     try {
         
-        let accessToken = req.headers.authorization
-    payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+        const accessToken = req.headers.authorization
+    const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
 
-    let user = payload.role
+    req.payload = payload
+
+    const user = req.payload.role
     console.log(payload.role);
 
-    if (user = 'admin') {
+    if (user == 'admin') {
         res.status(200).send('welcome admin')
     }else{
 
@@ -58,13 +60,15 @@ exports.verifyIfDelieveryman = function(req, res, next){
     try {
         
         let accessToken = req.headers.authorization
-    payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+        const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+
+    req.payload = payload
 
     let livreur = payload.role
     console.log(payload.role);
 
     if (livreur == 'livreur') {
-        res.status(200).send('are you ready to deliever the order ?')
+        res.status(200)
     }else{
 
         res.send("sorry you're not allowed")
@@ -87,5 +91,6 @@ exports.verifyIfTheRightDelieveryman = async (req, res, next)=> {
    console.log(livreur)
 
 }
+
 
    

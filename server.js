@@ -8,6 +8,7 @@ const categorieRoute = require('./routes/categorie.route');
 const repasRouter = require('./routes/repas.route');
 const orderRoute = require('./routes/order.route');
 const AuthRoute = require('./routes/Auth.route');
+const factureRoute = require('./routes/facture.route');
 const { notFound } = require('./middleware/error');
 const { errorHandler } = require('./middleware/error');
 const app = express();
@@ -25,6 +26,7 @@ require('./DB/db');
     app.use('/api/repas', repasRouter);
     app.use('/api/order', orderRoute);
     app.use('/api/user', userRoute);
+    app.use('/api/facture', factureRoute);
     app.get('/', (req, res) => {
     res.send('Bienvennue sur {gestion de livraison} app!')
     })

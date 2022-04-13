@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const FactureModel = new mongoose.Schema({
+const FactureSchema = new mongoose.Schema({
     totalPrice : {
         type: Number,
         required : true
@@ -9,4 +9,8 @@ const FactureModel = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'order'
     }
-})
+});
+
+const facture = mongoose.model('facture' , FactureSchema);
+
+module.exports = facture;

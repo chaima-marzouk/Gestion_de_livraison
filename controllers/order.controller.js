@@ -17,3 +17,34 @@ exports.add = async (req, res) => {
         
     }
 }
+
+exports.remove = async(req, res) => {
+
+    try {
+        
+        const order = await Order.findById(req.params.id)
+        await order.remove()
+
+        res.send('order Deleted :) !')
+
+    } catch (error) {
+        
+        res.status(400).send(error)
+
+    }
+}
+
+exports.getOneOrderById = async(req, res, next) => {
+    
+    try {
+        const order = await Order.findById(req.params.id);
+        const status = order.status
+        req.order = order
+        // res.send(status)
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+    next()
+}

@@ -5,7 +5,6 @@ const orderSchema = new mongoose.Schema({
         type: String,
         enum: [
             'ready',
-            'packged',
             'delivering',
             'delivred'
         ],
@@ -17,8 +16,8 @@ const orderSchema = new mongoose.Schema({
         type: String
     },
     livreur: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'User',
+        type: String,
+        default: null
     },
     client: {
         type: mongoose.Schema.Types.ObjectId,
