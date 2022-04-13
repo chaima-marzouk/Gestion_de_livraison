@@ -18,7 +18,7 @@ require('./DB/db');
     app.use(express.urlencoded({extended:true}));
     app.use(cookieParser())
 
-    app.use(notFound);
+    // app.use(notFound);
     app.use(errorHandler);
     app.use('/api/users', AuthRoute);
     app.use('/api/categories', categorieRoute);

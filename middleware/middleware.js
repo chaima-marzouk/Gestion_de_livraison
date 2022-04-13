@@ -23,9 +23,7 @@ exports.verifyToken = function(req, res, next){
             return res.status(401).send("sorry your token has expired or has a invalid signature")
         }
 
-        next()
-    
-        
+        next()     
 
 }
 
@@ -87,7 +85,6 @@ exports.verifyIfTheRightDelieveryman = async (req, res, next)=> {
 
     let livreur = payload.id
    console.log(livreur)
-   kky
 
 }
 
