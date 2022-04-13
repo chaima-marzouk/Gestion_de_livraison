@@ -20,7 +20,8 @@ exports.register = async(req, res) => {
             email: req.body.email,
             password: req.body.password,
             passwordConfirm: req.body.passwordConfirm,
-            phone_number: req.body.phone_number
+            phone_number: req.body.phone_number,
+            role: req.body.role
         });
 
         const payload = {
@@ -68,7 +69,7 @@ exports.login = async (req, res, next) => {
         }
 
        else{
-           
+
         return res.status(200).json({
             status: "success",
             message: "Welcome"

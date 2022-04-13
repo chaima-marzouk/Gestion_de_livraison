@@ -59,7 +59,7 @@ exports.OneUser = async(req,res) => {
         const user = await User.findById(req.params.id);
        res.send(user)
     } catch (error) {
-        res.status(400).send(error)
+        res.status(400).send(error) 
     }
 
 }

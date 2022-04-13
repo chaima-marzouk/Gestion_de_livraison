@@ -54,5 +54,42 @@ const User = require('../models/user.model');
 
         next()
     }
+    exports.verifyIfDelieveryman = function(req, res, next){
+
+        try {
+            
+            let accessToken = req.headers.authorization
+        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+
+        let livreur = payload.role
+        console.log(payload.role);
+
+        if (livreur == 'livreur') {
+            res.status(200).send('are you ready to deliever the order ?')
+        }else{
+
+            res.send("sorry you're not allowed")
+            return
+        }
+
+        } catch (error) {
+            res.status(400).send(error)
+        }
+
+        next()
+    }
+
+
+
+
+exports.verifyIfTheRightDelieveryman = async (req, res, next)=> {
+
+    let accessToken = req.headers.authorization
+    payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET)
+
+    let livreur = payload.id
+   console.log(livreur)
+
+}
 
    
