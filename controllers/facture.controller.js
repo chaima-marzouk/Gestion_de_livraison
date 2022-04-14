@@ -29,3 +29,23 @@ exports.edit = async(req, res) => {
     }
 }
 
+exports.getFactures = async(req, res) => {
+    try {
+        const facture = await Facture.find().populate('order')
+        res.send( facture)
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+exports.getSingleFacture = async(req, res) => {
+    try {
+        const facture = Facture.findById(req.params.id).populate('order')
+        res.status(200).send(facture)
+    } catch (error) {
+
+        res.status(404).send("not found !")
+        
+    }
+}
+
